@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Base application theme.使用 parent="Theme.AppCompat.
+    Light.NoActionBar" 是在应用中去除 ActionBar运行效果图 -->
+    <style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="AppTheme" parent="AppThemeBase">
+    </style>
+
+</resources>
