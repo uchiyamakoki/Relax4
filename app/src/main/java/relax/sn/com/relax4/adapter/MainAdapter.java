@@ -95,7 +95,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 // ((HoursWeatherViewHolder) holder).bind(mWeatherData);
                 ((ViewHolder)holder).avatar.setImageDrawable(avatars[position % avatars.length]);
                 ((ViewHolder)holder).name.setText(names[position % names.length]);
-                ((ViewHolder)holder).des.setText(des[position % des.length]);
+                //((ViewHolder)holder).des.setText(des[position % des.length]);
                 break;
             case TYPE_THREE:
                 // ((SuggestionViewHolder) holder).bind(mWeatherData);
@@ -118,12 +118,12 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView avatar;
         public TextView name;
-        public TextView des;
+       // public TextView des;
         public ViewHolder(LayoutInflater inflater, ViewGroup parent){
-            super(inflater.inflate(R.layout.item_main,parent,false));
-            avatar = (ImageView)itemView.findViewById(R.id.card_image);
-            name = (TextView)itemView.findViewById(R.id.card_title);
-            des = (TextView)itemView.findViewById(R.id.card_text);
+            super(inflater.inflate(R.layout.item_temperature,parent,false));
+            avatar = (ImageView)itemView.findViewById(R.id.weather_icon);
+            name = (TextView)itemView.findViewById(R.id.temp_flu);
+           // des = (TextView)itemView.findViewById(R.id.card_text);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

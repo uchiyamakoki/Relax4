@@ -22,12 +22,12 @@
                 android:layout_height="wrap_content"
                 >
                 <RadioButton
-                    android:text="AnswerA"
+
                     android:id="@+id/answerA"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <RadioButton
-                    android:text="AnswerB"
+
                     android:id="@+id/answerB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />

@@ -1,5 +1,9 @@
 package relax.sn.com.relax4.view;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,6 +21,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Adapter;
 
+import com.squareup.haha.perflib.Main;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,19 +35,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import relax.sn.com.relax4.R;
+import relax.sn.com.relax4.bean.DiaryBean;
+import relax.sn.com.relax4.event.StartUpdateDiaryEvent;
 import relax.sn.com.relax4.fragment.CardContentFragment;
 import relax.sn.com.relax4.fragment.ListContentFragment;
 import relax.sn.com.relax4.fragment.MainContentFragment;
+import relax.sn.com.relax4.fragment.ScreamFragment;
 import relax.sn.com.relax4.fragment.TileContentFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
 
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EventBus.getDefault().register(this);
 
         String DB_PATH = "/data/data/relax.sn.com.relax4/databases/";
         String DB_NAME = "question.db";
@@ -73,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //抽屉导航
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer);
         ActionBar supportActionBar = getSupportActionBar();
@@ -101,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    //左上角打开导航
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -114,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new MainContentFragment(),"主界面");
-        adapter.addFragment(new ListContentFragment(),"List");
+        adapter.addFragment(new ScreamFragment(),"日记本");
         adapter.addFragment(new TileContentFragment(),"Title");
 
         viewPager.setAdapter(adapter);
@@ -146,6 +166,16 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return fragmentTitle.get(position);
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Subscribe
+    public void startUpdateDiaryActivity(StartUpdateDiaryEvent event) {
+        DiaryBean diaryBean = event.getDiaryBean();
+        String title = diaryBean.getTitle();
+        String content = diaryBean.getContent();
+        String tag = diaryBean.getTag();
+        UpdateDiaryActivity.startActivity(this, title, content, tag);
     }
 }
 

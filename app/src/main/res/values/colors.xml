@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#0D4A6A</color>
     <color name="colorAccent">#FC413D</color>
 
-    <color name="white">#FFFFFF</color>
+    <color name="white">#fafafa</color>
 
     <color name="dark_grey">#424242</color>
 
@@ -12,8 +12,9 @@
 
     <color name="button_grey">#757575</color>
 
+    <color name="gray">#bbafb4</color>
     <color name="grey"> #ebebeb</color>
-    <color name="black"> #000000</color>
+    <color name="black"> #343232</color>
     <color name="darkgrey">#C0C0C0</color>
 
     <color name="red"> #FF0000</color>
@@ -23,7 +24,7 @@
     <color name="softGreen"> #7fb80e</color>
     <color name="darkGreen"> #008000</color>
 
-    <color name="pink">#FFFF1493</color>
+    <color name="pink">#e91e63</color>
     <color name="themecolor">#00b7ee</color>
     <color name="lightPink">#FFF8DC</color>
     <color name="lightBlue">#00EEEE</color>
@@ -33,4 +34,12 @@
     <color name="dark_nongshu">#3c3645</color>
     <color name="qingZi">#6950a1</color>
     <color name="tieYu">#293047</color>
+
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+    <color name="white_pressed">#f1f1f1</color>
+    <color name="pink_pressed">#ec407a</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
 </resources>

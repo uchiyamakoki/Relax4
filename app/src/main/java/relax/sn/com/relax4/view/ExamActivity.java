@@ -71,6 +71,7 @@ public class ExamActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //判断是否为最后一题
                 if(current<count-1){
                     current++;
                     Question q=list.get(current);//final 不然不能从内部类中访问
@@ -97,6 +98,7 @@ public class ExamActivity extends AppCompatActivity {
                         radioButtons[q.selectedAnswer].setChecked(true);
                     }
                 }else if(current==count-1&&wrongNode==true){
+                    //温习错题时的检查
                     new AlertDialog.Builder(ExamActivity.this)
                             .setTitle("提示")
                             .setMessage("已经达到最后一题，是否退出？")
@@ -109,6 +111,7 @@ public class ExamActivity extends AppCompatActivity {
                             .setNegativeButton("取消",null)
                             .show();
                 }else {
+                    //没有题目了，开始检测正确性
                     final List<Integer> wrongList=checkAnswer(list);
                     if (wrongList.size()==0){
                         new AlertDialog.Builder(ExamActivity.this)
@@ -120,60 +123,64 @@ public class ExamActivity extends AppCompatActivity {
                                         ExamActivity.this.finish();
                                     }
                                 })
+                                .setNegativeButton("取消",null)
                                 .show();
-                    }
-                    new AlertDialog.Builder(ExamActivity.this)
+                       // ExamActivity.this.finish();else的锅很重要
+                    }else {
+                        new AlertDialog.Builder(ExamActivity.this)
                             /*
                              .setMessage("您答对了"+(list.size()-wrongList.size())
                                     +"道题目，答错了"+wrongList.size()+"道题目。是否查看具体情况？")
                              */
-                            .setTitle("提示")
-                            .setMessage("您似乎有点压力，是否查看具体情况？")
-                            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    wrongNode=true;
+                                .setTitle("提示")
+                                .setMessage("您似乎有点压力，是否查看具体情况？")
+                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        wrongNode=true;
                                     /*
                                     1.将错题复制到newList中
                                      */
-                                    List<Question> newList=new ArrayList<Question>();
-                                    for (int i=0;i<wrongList.size();i++){
-                                        newList.add(list.get(wrongList.get(i)));
-                                    }
-                                    list.clear();//将原来的list清空,将所有错的再加到list中
-                                    for (int i=0;i<newList.size();i++){
-                                        list.add(newList.get(i));
-                                    }
-                                    current=0;//重新设定一下c c
-                                    count=list.size();
-                                    Question q=list.get(current);//更新数据内容 copy前面就行
-                                    tv_question.setText(q.question);
-                                   // radioButtons[0].setText(q.answerA);
-                                    //radioButtons[1].setText(q.answerB);
-                                   // radioButtons[2].setText(q.answerC);
-                                    //radioButtons[3].setText(q.answerD);
-                                    String imgName = q.answerA+".png";
-                                    int resId = ResDrawableImgUtil.getResourceIdByIdentifier(ExamActivity.this,imgName);
-                                    if(resId != -1){
-                                        radioButtons[0].setBackgroundResource(resId);
-                                    }
-                                    String imgName1 = q.answerB+".png";
-                                    int resId1 = ResDrawableImgUtil.getResourceIdByIdentifier(ExamActivity.this,imgName1);
-                                    if(resId1 != -1){
-                                        radioButtons[1].setBackgroundResource(resId1);
-                                    }
+                                        List<Question> newList=new ArrayList<Question>();
+                                        for (int i=0;i<wrongList.size();i++){
+                                            newList.add(list.get(wrongList.get(i)));
+                                        }
+                                        list.clear();//将原来的list清空,将所有错的再加到list中
+                                        for (int i=0;i<newList.size();i++){
+                                            list.add(newList.get(i));
+                                        }
+                                        current=0;//重新设定一下c c
+                                        count=list.size();
 
-                                    tv_explaination.setText(q.explaination);
-                                    tv_explaination.setVisibility(View.VISIBLE);//将隐藏的显示出来
-                                }
-                            })
-                            .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ExamActivity.this.finish();
-                                }
-                            })
-                    .show();
+                                        Question q=list.get(current);//更新数据内容 copy前面就行
+                                        tv_question.setText(q.question);
+                                        // radioButtons[0].setText(q.answerA);
+                                        //radioButtons[1].setText(q.answerB);
+                                        // radioButtons[2].setText(q.answerC);
+                                        //radioButtons[3].setText(q.answerD);
+                                        String imgName = q.answerA+".png";
+                                        int resId = ResDrawableImgUtil.getResourceIdByIdentifier(ExamActivity.this,imgName);
+                                        if(resId != -1){
+                                            radioButtons[0].setBackgroundResource(resId);
+                                        }
+                                        String imgName1 = q.answerB+".png";
+                                        int resId1 = ResDrawableImgUtil.getResourceIdByIdentifier(ExamActivity.this,imgName1);
+                                        if(resId1 != -1){
+                                            radioButtons[1].setBackgroundResource(resId1);
+                                        }
+
+                                        tv_explaination.setText(q.explaination);
+                                        tv_explaination.setVisibility(View.VISIBLE);//将隐藏的显示出来
+                                    }
+                                })
+                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        ExamActivity.this.finish();
+                                    }
+                                })
+                                .show();
+                    }
 
                 }
             }
@@ -233,6 +240,7 @@ public class ExamActivity extends AppCompatActivity {
     private List<Integer> checkAnswer(List<Question> list){
         List<Integer> wrongList=new ArrayList<Integer>(); //保存错误的下标
         for (int i=0;i<list.size();i++){
+            //判断对错
             if(list.get(i).answer!=list.get(i).selectedAnswer ){
                 wrongList.add(i);
             }

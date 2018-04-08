@@ -104,7 +104,7 @@
 
     <string-array name="questions">
         <item>一周压力规划</item>
-        <item>一周压力规划</item>
+        <item>语音机器人</item>
     </string-array>
     <string-array name="questions_desc">
         <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
@@ -112,6 +112,6 @@
     </string-array>
     <array name="questions_avator">
         <item>@mipmap/empty</item>
-        <item>@mipmap/empty</item>
+        <item>@mipmap/talk</item>
     </array>
 </resources>
