@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@+id/temp_layout"
-                android:textSize="35sp"
+                android:textSize="30sp"
                 android:text="一周的规划"/>
 
             <LinearLayout
