@@ -45,8 +45,10 @@ import relax.sn.com.relax4.fragment.TileContentFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    //DrawLayout布局emmm
     private DrawerLayout mDrawerLayout;
 
+    //日记类用到的吧好像，用于跳转
     public static void startActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
@@ -57,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EventBus.getDefault().register(this);
-
+        EventBus.getDefault().register(this);//在要接收消息的页面注册
+        //答题的数据库相关
         String DB_PATH = "/data/data/relax.sn.com.relax4/databases/";
         String DB_NAME = "question.db";
 
-        if((new File(DB_PATH + DB_NAME).exists()) == false) //判断目录是否存在，否则创建
+        if((new File(DB_PATH + DB_NAME).exists()) == false) //判断目录是否存在，否则创建 很想把这个封装了*****************************
         {
             File dir = new File(DB_PATH);
             if (!dir.exists())
@@ -133,9 +135,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new MainContentFragment(),"主界面");
-        adapter.addFragment(new ScreamFragment(),"日记本");
-        adapter.addFragment(new TileContentFragment(),"Title");
+        adapter.addFragment(new MainContentFragment(),"减压机器人");
+        adapter.addFragment(new ScreamFragment(),"大声说出来");
+        adapter.addFragment(new TileContentFragment(),"时间胶囊");
 
         viewPager.setAdapter(adapter);
     }

@@ -21,7 +21,8 @@ import relax.sn.com.relax4.bean.Result;
 public class HttpUtils {
     private static final String URL = "http://www.tuling123.com/openapi/api";
     //"请自行申请apikey"
-    private static final String API_KEY = "534dc342ad15885dffc10d7b5f813451";
+    //private static final String API_KEY = "534dc342ad15885dffc10d7b5f813451";
+    private static final String API_KEY = "577173e62a2ff6627b62e94d663b449c";
 
     /**
      * 发送一个消息，得到返回的消息

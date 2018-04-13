@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="49dp"
                 android:layout_height="49dp"
-                android:src="@drawable/icon" />
+                android:src="@drawable/icon_cat" />
 
         <TextView
             android:id="@+id/id_from_msg_info"
