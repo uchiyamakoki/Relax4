@@ -1,4 +1,4 @@
-package relax.sn.com.relax4.bean;
+package relax.sn.com.relax4.entity;
 
 /**
  * Created by John on 2018/3/10.

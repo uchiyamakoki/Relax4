@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import relax.sn.com.relax4.R;
-import relax.sn.com.relax4.bean.Question;
+import relax.sn.com.relax4.entity.Question;
 import relax.sn.com.relax4.utils.DBService;
 import relax.sn.com.relax4.utils.ResDrawableImgUtil;
 

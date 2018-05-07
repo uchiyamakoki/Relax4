@@ -33,7 +33,6 @@
                 android:value=".view.MainActivity"></meta-data>
         </activity>
         <activity android:name=".view.ExamActivity"></activity>
-        <activity android:name=".view.TalkActivity"></activity>
         <!--添加日记-->
         <activity android:name=".view.AddDiaryActivity"
             android:windowSoftInputMode="adjustPan"
@@ -49,6 +48,11 @@
         <activity android:name=".view.UpdateDiaryActivity"
             android:windowSoftInputMode="adjustPan"
             />
+        <activity android:name=".view.TulingActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+        </activity>
     </application>
+
 
 </manifest>

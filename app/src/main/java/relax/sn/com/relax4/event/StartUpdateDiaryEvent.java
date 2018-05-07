@@ -1,6 +1,6 @@
 package relax.sn.com.relax4.event;
 
-import relax.sn.com.relax4.bean.DiaryBean;
+import relax.sn.com.relax4.entity.DiaryBean;
 
 /**
  * 打开「修改日记」的界面

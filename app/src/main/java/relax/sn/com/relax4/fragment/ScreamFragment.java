@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import relax.sn.com.relax4.R;
 import relax.sn.com.relax4.adapter.DiaryAdapter;
-import relax.sn.com.relax4.bean.DiaryBean;
+import relax.sn.com.relax4.entity.DiaryBean;
 import relax.sn.com.relax4.utils.DiaryDatabaseHelper;
 import relax.sn.com.relax4.utils.GetDate;
 import relax.sn.com.relax4.view.AddDiaryActivity;

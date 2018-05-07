@@ -16,7 +16,7 @@ import android.widget.TextView;
 import relax.sn.com.relax4.R;
 import relax.sn.com.relax4.view.DetailActivity;
 import relax.sn.com.relax4.view.ExamActivity;
-import relax.sn.com.relax4.view.TalkActivity;
+import relax.sn.com.relax4.view.TulingActivity;
 
 /**
  * Created by John on 2018/3/30.
@@ -130,7 +130,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 public void onClick(View v) {
                     Intent intent = new Intent();
                    // intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
-                    intent.setClass(v.getContext(), TalkActivity.class);
+                    intent.setClass(v.getContext(), TulingActivity.class);
                     v.getContext().startActivity(intent);
                 }
             });

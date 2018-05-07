@@ -16,12 +16,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Adapter;
-
-import com.squareup.haha.perflib.Main;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,10 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import relax.sn.com.relax4.R;
-import relax.sn.com.relax4.bean.DiaryBean;
+import relax.sn.com.relax4.entity.DiaryBean;
 import relax.sn.com.relax4.event.StartUpdateDiaryEvent;
-import relax.sn.com.relax4.fragment.CardContentFragment;
-import relax.sn.com.relax4.fragment.ListContentFragment;
 import relax.sn.com.relax4.fragment.MainContentFragment;
 import relax.sn.com.relax4.fragment.ScreamFragment;
 import relax.sn.com.relax4.fragment.TileContentFragment;

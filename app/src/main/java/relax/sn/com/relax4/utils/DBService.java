@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import relax.sn.com.relax4.bean.Question;
+import relax.sn.com.relax4.entity.Question;
 
 /**
  * Created by John on 2018/3/10.

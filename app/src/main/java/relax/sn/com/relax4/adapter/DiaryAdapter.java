@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 
 import relax.sn.com.relax4.R;
-import relax.sn.com.relax4.bean.DiaryBean;
+import relax.sn.com.relax4.entity.DiaryBean;
 import relax.sn.com.relax4.event.StartUpdateDiaryEvent;
 import relax.sn.com.relax4.utils.GetDate;
 

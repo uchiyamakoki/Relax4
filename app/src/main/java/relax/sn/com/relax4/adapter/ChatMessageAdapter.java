@@ -1,110 +1,108 @@
 package relax.sn.com.relax4.adapter;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import com.github.library.bubbleview.BubbleTextVew;
+
+
 import java.util.List;
 
 import relax.sn.com.relax4.R;
-import relax.sn.com.relax4.bean.ChatMessage;
-
+import relax.sn.com.relax4.constant.TulingParams;
+import relax.sn.com.relax4.entity.MessageEntity;
+import relax.sn.com.relax4.utils.SpecialViewUtil;
+import relax.sn.com.relax4.utils.TimeUtil;
 
 /**
- * Created by John on 2018/4/1.
+ * Created by John on 2018/5/3.
  */
-public class ChatMessageAdapter extends BaseAdapter{
+public class ChatMessageAdapter extends BaseListAdapter<MessageEntity> {
 
-    private LayoutInflater mInflater;
-    private List<ChatMessage> mDatas;
+    private Context mContext;
 
-    public ChatMessageAdapter(Context context, List<ChatMessage> mDatas)
-    {
-        mInflater = LayoutInflater.from(context);
-        this.mDatas = mDatas;
+    public static final int TYPE_LEFT = 0;//左边
+    public static final int TYPE_RIGHT = 1;//右边
+
+    public ChatMessageAdapter(Context context, List<MessageEntity> list) {
+        super(context, list);
+        mContext = context;
     }
 
     @Override
-    public int getCount()
-    {
-        return mDatas.size();
-    }
-
-    @Override
-    public Object getItem(int position)
-    {
-        return mDatas.get(position);
-    }
-
-    @Override
-    public long getItemId(int position)
-    {
-        return position;
-    }
-
-    @Override
-    public int getItemViewType(int position)
-    {
-        ChatMessage chatMessage = mDatas.get(position);
-        if (chatMessage.getType() == ChatMessage.Type.INCOMING)
-        {
-            return 0;//接收
+    public int getItemViewType(int position) {
+        //判断是左边还是右边 type在Main中会设置，挺简单的
+        if (getItem(position).getType()==TYPE_LEFT){
+            return TYPE_LEFT;
         }
-        return 1;//发送
+        return TYPE_RIGHT;
     }
 
     @Override
-    public int getViewTypeCount()
-    {
+    public int getViewTypeCount() {
         return 2;
     }
+    //决定用哪个布局
+    private View createViewByType(int position) {
+        if (getItem(position).getType() == TYPE_LEFT) {
+            return mInflater.inflate(R.layout.item_conversation_left, null);
+        }
+        return mInflater.inflate(R.layout.item_conversation_right, null);
+    }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
-        ChatMessage chatMessage = mDatas.get(position);
-        ViewHolder viewHolder = null;
-        if (convertView == null)
-        {
-            // 通过ItemType设置不同的布局
-            if (getItemViewType(position) == 0)
-            {
-                convertView = mInflater.inflate(R.layout.item_from_msg, parent,
-                        false);
-                viewHolder = new ViewHolder();
-                viewHolder.mDate = (TextView) convertView
-                        .findViewById(R.id.id_form_msg_date);
-                viewHolder.mMsg = (TextView) convertView
-                        .findViewById(R.id.id_from_msg_info);
-            } else
-            {
-                convertView = mInflater.inflate(R.layout.item_to_msg, parent,
-                        false);
-                viewHolder = new ViewHolder();
-                viewHolder.mDate = (TextView) convertView
-                        .findViewById(R.id.id_to_msg_date);
-                viewHolder.mMsg = (TextView) convertView
-                        .findViewById(R.id.id_to_msg_info);
-            }
-            convertView.setTag(viewHolder);
-        } else
-        {
-            viewHolder = (ViewHolder) convertView.getTag();
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if(convertView==null){
+            convertView=createViewByType(position);//返回一个view
         }
-        // 设置数据
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        viewHolder.mDate.setText(df.format(chatMessage.getDate()));
-        viewHolder.mMsg.setText(chatMessage.getMsg());
-        return convertView;
+
+        final MessageEntity entity=getItem(position);//获得对应position的MessageEntity
+        //通过用相同的id减少了代码
+        TextView tvTime = ViewHolder.get(convertView, R.id.tv_time);//时间
+        BubbleTextVew btvMessage = ViewHolder.get(convertView, R.id.btv_message);//文本框
+
+        if (isDisplayTime(position)) {
+            tvTime.setVisibility(View.VISIBLE);
+            tvTime.setText(TimeUtil.friendlyTime(mContext, entity.getTime()));
+        } else {
+            tvTime.setVisibility(View.GONE);
+        }
+        //处理不同的请求，具体在TulingCode里有介绍 然后设置文本
+        switch (entity.getCode()) {
+            case TulingParams.TulingCode.URL:
+                btvMessage.setText(SpecialViewUtil.getSpannableString(entity.getText(), entity.getUrl()));
+                break;
+            case TulingParams.TulingCode.NEWS:
+                btvMessage.setText(SpecialViewUtil.getSpannableString(entity.getText(), "点击查看"));
+                break;
+            default:
+                btvMessage.setText(entity.getText());
+                break;
+        }
+       //处理特殊情况的点击事件btvMessage.setOnClickListener
+
+        //长按复制事件 btvMessage.setOnLongClickListener
+
+
+        return convertView;//tag在自定义ViewHolder里已经完成
+    }
+    //  一分钟内的请求与回复不显示时间
+    public boolean isDisplayTime(int position) {
+        if (position > 0) {
+            if ((getItem(position).getTime() - getItem(position-1).getTime()) > 60 * 1000) {
+                return true; //大于一分钟
+            } else {
+                return false;
+            }
+        } else if (position == 0) {
+            return true;//第一条记录
+        } else {
+            return false;
+        }
     }
 
-    private final class ViewHolder
-    {
-        TextView mDate;
-        TextView mMsg;
-    }
+
+
 }
