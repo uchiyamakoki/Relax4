@@ -5,10 +5,31 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <!-- 讯飞语音权限开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 读取网络信息状态 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 读取手机信息权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!-- 读取联系人权限，上传联系人需要用到此权限 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!-- 打电话权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- <uses-permission android:name="android.permission.GLOBAL_SEARCH" /> -->
+    <!-- 发短信权限 -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <!-- 编辑短信权限 -->
+    <uses-permission android:name="android.permission.WRITE_SMS"/>
+    <!-- 读取短信权限 -->
+    <uses-permission android:name="android.permission.READ_SMS"/>
+    <!-- 获取地理位置权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- 获取设置闹钟权限 -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
     <!-- 讯飞语音权限结束 -->
     <application
         android:allowBackup="true"
@@ -56,6 +77,17 @@
         <!--测试用的 Activity-->
         <activity android:name=".view.VoiceActivity">
         </activity>
+
+        <!--测试用的 Activity-->
+        <activity android:name=".view.HelpActivity">
+        </activity>
+
+        <meta-data
+            android:name="IFLYTEK_APPKEY"
+            android:value="&apos;58057ac8&apos;"/>
+        <meta-data
+            android:name="IFLYTEK_CHANNEL"
+            android:value="Android_Demo"/>
     </application>
 
 
