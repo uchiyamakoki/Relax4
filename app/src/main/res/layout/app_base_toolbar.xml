@@ -9,4 +9,11 @@
     android:background="@color/colorPrimary"
     app:layout_scrollFlags="scroll|enterAlways"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <ImageView
+        android:id="@+id/gotovoice"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/voice_new"
+        android:layout_marginLeft="310dp"/>
+</android.support.v7.widget.Toolbar>

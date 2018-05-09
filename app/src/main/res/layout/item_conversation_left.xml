@@ -32,7 +32,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="4dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/icon_ai"
+            android:src="@drawable/icon_dog"
             app:civ_border_width="1dp"
             app:civ_border_color="@color/bk"/>
         <LinearLayout

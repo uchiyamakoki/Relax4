@@ -1,5 +1,6 @@
 package relax.sn.com.relax4.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -54,6 +55,8 @@ public class TulingActivity extends BaseActivity {
     ImageView ivSendMsg;//发送的那个图片按钮
     @Bind(R.id.rl_msg)
     RelativeLayout r1Msg;//最下面那个相对布局
+    @Bind(R.id.gotovoice)
+    ImageView mgovoice;
 
     private List<MessageEntity> msgList=new ArrayList<>();//用来接收消息
     private ChatMessageAdapter msgAdapter; //消息适配器
@@ -69,7 +72,7 @@ public class TulingActivity extends BaseActivity {
         //requestApiByRetrofit_RxJava("讲个笑话");
         initData();
         initView();
-        SpeechUtility.createUtility(TulingActivity.this, SpeechConstant.APPID+"=56f22e12");
+        SpeechUtility.createUtility(TulingActivity.this, SpeechConstant.APPID+"=58057ac8");
         mGson=new Gson();
         initListener();
 
@@ -89,6 +92,13 @@ public class TulingActivity extends BaseActivity {
     private void initView() {
         toolbar.setTitle("TulingR"); //设置toolbar
         setSupportActionBar(toolbar);
+        mgovoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(TulingActivity.this,VoiceActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void initListener() {
@@ -112,7 +122,6 @@ public class TulingActivity extends BaseActivity {
         //判断只有空格或者是null
         if(!IsNullOrEmpty.isEmpty(msg)){
             MessageEntity entity=new MessageEntity(ChatMessageAdapter.TYPE_RIGHT, TimeUtil.getCurrentTimeMillis(),msg);
-
             msgList.add(entity);
             msgAdapter.notifyDataSetChanged(); //用notifyDataSetChanged更新主界面
             etMsg.setText(""); //清空输入框文本

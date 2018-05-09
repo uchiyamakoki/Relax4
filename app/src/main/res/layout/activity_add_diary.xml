@@ -93,6 +93,15 @@
             app:fab_icon = "@drawable/menu"
             app:fab_addButtonSize="mini"
             >
+            <cc.trity.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_diary_fab_voice"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:fab_colorNormal="#009688"
+                app:fab_size="normal"
+                app:fab_icon = "@drawable/voice_new"
+                android:onClick="onRecognise"
+                />
 
             <cc.trity.floatingactionbutton.FloatingActionButton
                 android:id="@+id/add_diary_fab_back"

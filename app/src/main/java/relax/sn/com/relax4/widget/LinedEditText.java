@@ -10,9 +10,7 @@ import android.graphics.PathEffect;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-/**
- * Created by 李 on 2017/1/26.
- */
+
 @SuppressLint({ "ResourceAsColor", "DrawAllocation" })
 
 public class LinedEditText extends EditText {
