@@ -4,6 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
+              android:id="@+id/update_layout"
     >
 
     <include
@@ -12,8 +13,8 @@
 
     <TextView
         android:id="@+id/update_diary_tv_tag"
-        android:layout_width="0.001dp"
-        android:layout_height="0.001dp"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
         android:text="sdafaf"
         />
 
@@ -79,6 +80,18 @@
                 android:scrollbars="vertical"
                 android:textSize="17sp"
                 />
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginLeft="140dp"
+                android:layout_centerInParent="true"
+                android:src="@android:color/darker_gray"
+                android:id="@+id/main_btn_play_sound"
+                app:btn_color="@android:color/darker_gray"
+                app:btn_fill_color="@android:color/holo_red_light"
+                app:allow_random_color="false"
+                app:siShape="@raw/heart"  />
 
             <LinearLayout
                 android:layout_width="match_parent"

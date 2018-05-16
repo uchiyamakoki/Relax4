@@ -4,16 +4,19 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +30,7 @@ import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechUtility;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
+import com.sackcentury.shinebuttonlib.ShineButton;
 
 import java.util.List;
 
@@ -38,6 +42,7 @@ import cc.trity.floatingactionbutton.FloatingActionsMenu;
 import relax.sn.com.relax4.R;
 import relax.sn.com.relax4.entity.ResultBean;
 import relax.sn.com.relax4.entity.Text;
+import relax.sn.com.relax4.fragment.RecordAudioDialogFragment;
 import relax.sn.com.relax4.utils.AppManager;
 import relax.sn.com.relax4.utils.DiaryDatabaseHelper;
 import relax.sn.com.relax4.utils.GetDate;
@@ -69,6 +74,13 @@ public class AddDiaryActivity extends AppCompatActivity {
     ImageView mCommonIvBack;
     @Bind(R.id.common_iv_test)
     ImageView mCommonIvTest;
+
+    @Bind(R.id.main_btn_record_sound)
+    ShineButton mBtnRecordAudio;//录音按钮
+
+     @Bind(R.id.add_diary_tv_tag)
+    TextView mTvTag2;
+
 
     private DiaryDatabaseHelper mHelper;
 
@@ -111,6 +123,20 @@ public class AddDiaryActivity extends AppCompatActivity {
         SpeechUtility.createUtility(AddDiaryActivity.this, SpeechConstant.APPID+"=58057ac8");
         mGson=new Gson();
 
+        mBtnRecordAudio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final RecordAudioDialogFragment fragment = RecordAudioDialogFragment.newInstance();
+                fragment.show(getSupportFragmentManager(), RecordAudioDialogFragment.class.getSimpleName());
+                fragment.setOnCancelListener(new RecordAudioDialogFragment.OnAudioCancelListener() {
+                    @Override
+                    public void onCancel() {
+                        fragment.dismiss();
+                    }
+                });
+            }
+        });
+
         mAddDiaryEtTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
@@ -118,6 +144,10 @@ public class AddDiaryActivity extends AppCompatActivity {
                 if(hasFocus){//获得焦点
                     flag_title=true;
                     flag_content=false;
+                   // SharedPreferences sharePreferences = getSharedPreferences("sp_name_audio", MODE_PRIVATE);
+                    //final String fileName = sharePreferences.getString("audio_name", "");
+                    //String tag =fileName;
+                    //mTvTag2.setText(tag);
                 }else{//失去焦点
                     //flag_content=false;
                 }
@@ -155,8 +185,17 @@ public class AddDiaryActivity extends AppCompatActivity {
                 //t1.setFlag_content(true);
                 break;
             case R.id.add_diary_fab_back:
+                SharedPreferences sharePreferences = getSharedPreferences("sp_name_audio", MODE_PRIVATE);
+                final String fileName = sharePreferences.getString("audio_name", "");
                 String date = GetDate.getDate().toString();
-                String tag = String.valueOf(System.currentTimeMillis());
+
+                /*if(fileName==null||fileName.equals("")){
+                    String tag = "1";
+                }else {
+                    String tag =fileName;
+                }*/
+                String tag =fileName;
+                mTvTag2.setText(tag);
                 String title = mAddDiaryEtTitle.getText().toString() + "";
                 String content = mAddDiaryEtContent.getText().toString() + "";
                 if (!title.equals("") || !content.equals("")) {
@@ -169,6 +208,9 @@ public class AddDiaryActivity extends AppCompatActivity {
                     db.insert("Diary", null, values);
                     values.clear();
                 }
+                SharedPreferences.Editor editor=sharePreferences.edit();
+                editor.clear();
+                editor.commit();
                 finish();
                 break;
             case R.id.add_diary_fab_add:

@@ -10,6 +10,13 @@
         layout="@layout/part_common_title"
         />
 
+    <TextView
+        android:id="@+id/add_diary_tv_tag"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:text=""
+        />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,6 +77,22 @@
                 android:scrollbars="vertical"
                 android:textSize="17sp"
                 />
+
+
+            <com.sackcentury.shinebuttonlib.ShineButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="-20dp"
+                android:layout_marginLeft="140dp"
+                android:layout_centerInParent="true"
+                android:src="@android:color/darker_gray"
+                android:id="@+id/main_btn_record_sound"
+                app:btn_color="@android:color/darker_gray"
+                app:btn_fill_color="@android:color/holo_green_dark"
+                app:allow_random_color="false"
+                app:siShape="@raw/smile" />
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"

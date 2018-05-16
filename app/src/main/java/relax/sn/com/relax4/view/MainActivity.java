@@ -36,6 +36,7 @@ import relax.sn.com.relax4.event.StartUpdateDiaryEvent;
 import relax.sn.com.relax4.fragment.MainContentFragment;
 import relax.sn.com.relax4.fragment.ScreamFragment;
 import relax.sn.com.relax4.fragment.TileContentFragment;
+import relax.sn.com.relax4.fragment.TimeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -129,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new MainContentFragment(),"减压机器人");
-        adapter.addFragment(new ScreamFragment(),"大声说出来");
-        adapter.addFragment(new TileContentFragment(),"时间胶囊");
+        adapter.addFragment(new MainContentFragment(),"智能机器人");
+        adapter.addFragment(new ScreamFragment(),"赶走压力");
+        adapter.addFragment(new TimeFragment(),"时间胶囊");
 
         viewPager.setAdapter(adapter);
     }

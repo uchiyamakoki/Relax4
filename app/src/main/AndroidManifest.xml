@@ -30,6 +30,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <!-- 获取设置闹钟权限 -->
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 讯飞语音权限结束 -->
     <application
         android:allowBackup="true"
@@ -58,6 +60,7 @@
         <activity android:name=".view.AddDiaryActivity"
             android:windowSoftInputMode="adjustPan"
             >
+            >
 
         </activity>
 
@@ -82,12 +85,34 @@
         <activity android:name=".view.HelpActivity">
         </activity>
 
+        <!--测试用的 Activity-->
+        <activity android:name=".view.DoodleViewActivity"
+            android:theme="@style/AppTheme3">
+        </activity>
+
+        <activity android:name=".view.TimeActivity">
+
+        </activity>
+
+        <activity android:name=".view.TimeAddActivity">
+
+        </activity>
+
+        <activity android:name=".view.PingTuActivity"
+            android:theme="@style/AppTheme4">
+
+        </activity>
+        <activity android:name=".view.PuzzleActivity"></activity>
+
+        <activity android:name=".view.CeshiActivity"></activity>
+
         <meta-data
             android:name="IFLYTEK_APPKEY"
             android:value="&apos;58057ac8&apos;"/>
         <meta-data
             android:name="IFLYTEK_CHANNEL"
             android:value="Android_Demo"/>
+        <service android:name=".Service.RecordingService"/>
     </application>
 
 

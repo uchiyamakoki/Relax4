@@ -105,13 +105,22 @@
     <string-array name="questions">
         <item>一周压力规划</item>
         <item>语音机器人</item>
+        <item>随手涂下鸦</item>
+        <item>趣味拼图</item>
+        <item>心理测试</item>
     </string-array>
     <string-array name="questions_desc">
+        <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
+        <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
+        <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
         <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
         <item>Emmm 让 我 们 来 测 试 一 下 吧.</item>
     </string-array>
     <array name="questions_avator">
         <item>@mipmap/empty</item>
         <item>@mipmap/talk</item>
+        <item>@mipmap/xiaochou1</item>
+        <item>@mipmap/moshu2</item>
+        <item>@mipmap/xinliceshi</item>
     </array>
 </resources>

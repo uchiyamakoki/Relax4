@@ -604,7 +604,7 @@ public class VoiceActivity extends AppCompatActivity implements View.OnClickList
     public void exit() {
         if (System.currentTimeMillis() - time > 2000) {
             time = System.currentTimeMillis();
-            showTip("再点击一次退出应用程序");
+            showTip("再点击一次返回之前界面");
         } else {
             finish();
         }

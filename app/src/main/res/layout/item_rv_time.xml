@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_l2">
+
+    <LinearLayout
+        android:id="@+id/item_ll_control2"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#e5e5e5"
+        android:alpha="0.95">
+        <TextView
+            android:id="@+id/main_tv_content2"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" 44岁了
+ 这些年辛苦了"
+            android:textColor="#707070"
+            android:textSize="18sp"
+            android:lineSpacingExtra="10dp"
+            android:textStyle="normal"/>
+        <TextView
+            android:id="@+id/main_tv_comedate"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="寄往2035年"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="14dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#909090"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+
+</LinearLayout>

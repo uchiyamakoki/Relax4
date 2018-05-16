@@ -14,15 +14,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import relax.sn.com.relax4.R;
+import relax.sn.com.relax4.view.CeshiActivity;
 import relax.sn.com.relax4.view.DetailActivity;
+import relax.sn.com.relax4.view.DoodleViewActivity;
 import relax.sn.com.relax4.view.ExamActivity;
+import relax.sn.com.relax4.view.PingTuActivity;
+import relax.sn.com.relax4.view.TestActivity;
 import relax.sn.com.relax4.view.TulingActivity;
 
 /**
  * Created by John on 2018/3/30.
  */
 public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    private static final int LENGTH = 2;//忘了这货了。
+    private static final int LENGTH = 5;//忘了这货了。
     private String[] names;
     private String[] des;
     private Drawable[] avatars;
@@ -31,6 +35,7 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private static final int TYPE_TWO = 1;//
     private static final int TYPE_THREE = 2;//
     private static final int TYPE_FORE = 3;//
+    private static final int TYPE_FIVE = 4;//
 
     public MainAdapter(Context context) {
         Resources resources = context.getResources();
@@ -58,6 +63,9 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         if (position == MainAdapter.TYPE_FORE) {
             return MainAdapter.TYPE_FORE;
         }
+        if (position == MainAdapter.TYPE_FIVE) {
+            return MainAdapter.TYPE_FIVE;
+        }
         return super.getItemViewType(position);
     }
 
@@ -71,9 +79,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             case TYPE_TWO:
                 return new ViewHolder(LayoutInflater.from(parent.getContext()),parent);
             case TYPE_THREE:
-                return null;
+                return new ViewHolder3(LayoutInflater.from(parent.getContext()),parent);
             case TYPE_FORE:
-                return null;
+                return new ViewHolder4(LayoutInflater.from(parent.getContext()),parent);
+            case TYPE_FIVE:
+                return new ViewHolder5(LayoutInflater.from(parent.getContext()),parent);
         }
         return null;
     }
@@ -99,9 +109,18 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 break;
             case TYPE_THREE:
                 // ((SuggestionViewHolder) holder).bind(mWeatherData);
+                ((ViewHolder3)holder).weatherIcon.setImageDrawable(avatars[position % avatars.length]);
+                ((ViewHolder3)holder).tempFlu.setText(names[position % names.length]);
                 break;
             case TYPE_FORE:
                 //((ForecastViewHolder) holder).bind(mWeatherData);
+                ((ViewHolder4)holder).weatherIcon.setImageDrawable(avatars[position % avatars.length]);
+                ((ViewHolder4)holder).tempFlu.setText(names[position % names.length]);
+                break;
+            case TYPE_FIVE:
+                //((ForecastViewHolder) holder).bind(mWeatherData);
+                ((ViewHolder5)holder).weatherIcon.setImageDrawable(avatars[position % avatars.length]);
+                ((ViewHolder5)holder).tempFlu.setText(names[position % names.length]);
                 break;
             default:
                 break;
@@ -173,6 +192,107 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     Intent intent = new Intent();
                     //intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
                     intent.setClass(v.getContext(),ExamActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
+        }
+    }
+
+    /*
+  问题的ViewHolder2
+   */
+    public static class ViewHolder3 extends RecyclerView.ViewHolder{
+        public ImageView weatherIcon;
+        public TextView tempFlu;
+        //public TextView des;
+        public ViewHolder3(LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.item_temperature,parent,false));
+            weatherIcon = (ImageView)itemView.findViewById(R.id.weather_icon);
+            tempFlu = (TextView)itemView.findViewById(R.id.temp_flu);
+            // des = (TextView)itemView.findViewById(R.id.card_text);
+
+       /*     itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),DetailActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    //intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),DoodleViewActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
+        }
+    }
+    /*
+ 问题的ViewHolder2魔术
+  */
+    public static class ViewHolder4 extends RecyclerView.ViewHolder{
+        public ImageView weatherIcon;
+        public TextView tempFlu;
+        //public TextView des;
+        public ViewHolder4(LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.item_temperature,parent,false));
+            weatherIcon = (ImageView)itemView.findViewById(R.id.weather_icon);
+            tempFlu = (TextView)itemView.findViewById(R.id.temp_flu);
+            // des = (TextView)itemView.findViewById(R.id.card_text);
+
+       /*     itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),DetailActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    //intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),PingTuActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });
+        }
+    }
+
+    /*
+问题的ViewHolder2魔术
+*/
+    public static class ViewHolder5 extends RecyclerView.ViewHolder{
+        public ImageView weatherIcon;
+        public TextView tempFlu;
+        //public TextView des;
+        public ViewHolder5(LayoutInflater inflater, ViewGroup parent){
+            super(inflater.inflate(R.layout.item_temperature,parent,false));
+            weatherIcon = (ImageView)itemView.findViewById(R.id.weather_icon);
+            tempFlu = (TextView)itemView.findViewById(R.id.temp_flu);
+            // des = (TextView)itemView.findViewById(R.id.card_text);
+
+       /*     itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),DetailActivity.class);
+                    v.getContext().startActivity(intent);
+                }
+            });*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    //intent.putExtra(DetailActivity.EXTRA_POSITION,getAdapterPosition());
+                    intent.setClass(v.getContext(),CeshiActivity.class);
                     v.getContext().startActivity(intent);
                 }
             });

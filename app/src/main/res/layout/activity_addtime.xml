@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/timg6">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="送往时间"
+        android:textSize="20dp"
+        android:textColor="#fbfbfb"/>
+    <EditText
+        android:id="@+id/add_time_et_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_add_diary_title"
+        android:enabled="true"
+        android:gravity="top"
+        android:maxLines="10"
+        android:minLines="8"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:scrollbars="vertical"
+        android:layout_marginTop="10dp"
+        android:alpha="0.9"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <relax.sn.com.relax4.widget.LinedEditText
+        android:id="@+id/add_time_et_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/shape_add_diary_title"
+        android:enabled="true"
+        android:gravity="top"
+        android:lineSpacingExtra="5dp"
+        android:maxLines="10"
+        android:minLines="8"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:scrollbars="vertical"
+        android:textSize="17sp"
+        android:alpha="0.9"
+        />
+
+    <ImageView
+        android:id="@+id/fasong"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/xx2"
+        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>
